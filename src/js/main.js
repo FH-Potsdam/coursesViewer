@@ -16,7 +16,7 @@ function getStudyCode(code) {
 function getLinkedTitle(title, link) {
 	var courseTitle = title;
 	if (link) {
-		courseTitle = '<a href="' +'https://incom.org/workspace/'+ link + '">' + title  + '</a>';
+		courseTitle = '<a href="' + link + '">' + title  + '</a>';
 	}
 	return courseTitle;
 };
@@ -31,11 +31,10 @@ function getCredits(cred){
 	var credits = cred;
 	return credits;
 }
-function getPlace(place) {
-	var fullPlace = place;
-	return fullPlace;
-};
-
+function getDescription(descr){
+	var description = descr;
+	return description
+}
 
 function displayCourseHtml(course) {
     var htmlStructure =
@@ -43,8 +42,8 @@ function displayCourseHtml(course) {
             '<td>' + getStudyCode(course.studyCode) +'</td>' +
             '<td>' + getLinkedTitle(course.title, course.incomWorkspaceUrl) + '</td>' +
             '<td>' + getFullName(course.firstName, course.lastName) + '</td>' +
-						'<td>' + getCredits(course.credits) + '</td>'
-            '<td>' + getPlace(course.locations) + '</td>' +
+						'<td>' + getCredits(course.credits) + '</td>' +
+            '<td>' + getDescription(course.description) + '</td>' +
         '</tr>';
     var $elementToInjectIn = $('#results tbody');
     $elementToInjectIn.append(htmlStructure);
