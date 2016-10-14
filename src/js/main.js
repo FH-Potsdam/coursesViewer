@@ -26,12 +26,11 @@ function getFullName(teachersarray) {
 	return teacher;
 }
 function getCredits(cred){
-	var credits = cred;
-	return credits;
+  if(!cred) return '–';
+	return cred;
 }
-function getDescription(descr){
-	var description = descr;
-	return description
+function getDescription(desc){
+	return desc;
 }
 
 function displayCourseHtml(course) {
