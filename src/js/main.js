@@ -1,50 +1,47 @@
+var courses = [];
 
-var courses = [
-	{
-		title: "Sponge bob",
-		link: "http://google.com"
-	},
-	{
-		title: "Dracula"
-	},
-	{
-		title: "Spiderman"
-	},
-    {
-		title: "Pocaontas"
-	},
-	{
-		title: "Homer Simpson"
-	},
-	{
-		title: "Deine Mutter"
-	}
-];
+$.ajax('https://coursesapi.herokuapp.com/courses?limit=1000')
+    .done(function(response) {
+        courses = response.data || response;
+				courses.forEach(displayCourseHtml);
+    })
+    .fail(function(err) {
+        console.log(err);
+    });
 
+function getStudyCode(code) {
+	var studyCode = code;
+	return studyCode;
+};
 function getLinkedTitle(title, link) {
 	var courseTitle = title;
 	if (link) {
 		courseTitle = '<a href="' + link + '">' + title  + '</a>';
 	}
 	return courseTitle;
+};
+function getFullName(teachersarray) {
+	var teacher = teachersarray.length ? teachersarray[0].fullName : '';
+
+	return teacher;
+}
+function getCredits(cred){
+  if(!cred) return '–';
+	return cred;
+}
+function getDescription(desc){
+	return desc;
 }
 
 function displayCourseHtml(course) {
-	var courseTitle = getLinkedTitle(course.title, course.link);
     var htmlStructure =
         '<tr>' +
-            '<td>11EG-P</td>' +
-            '<td>' + courseTitle + '</td>' +
-            '<td>B.A. Fabian Moron-Zirfas, Prof. Myriel Milicevic </td>' +
-            '<td>20.10.2016</td>' +
-            '<td>03.02.2017</td>' +
-            '<td>Donnerstag</td>' +
-            '<td>wöchentlich</td>' +
-            '<td>10:00-16:00</td>' +
-            '<td>LW 226</td>' +
+            '<td>' + getStudyCode(course.studyCode) +'</td>' +
+            '<td>' + getLinkedTitle(course.title, course.incomWorkspaceUrl) + '</td>' +
+            '<td>' + getFullName(course.teachers) + '</td>' +
+						'<td>' + getCredits(course.credits) + '</td>' +
+            '<td>' + getDescription(course.description) + '</td>' +
         '</tr>';
     var $elementToInjectIn = $('#results tbody');
     $elementToInjectIn.append(htmlStructure);
 }
-
-courses.forEach(displayCourseHtml);
