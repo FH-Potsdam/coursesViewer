@@ -1,6 +1,6 @@
 var courses = [];
 
-$.ajax('https://coursesapi.herokuapp.com/courses')
+$.ajax('https://coursesapi.herokuapp.com/courses?limit=1000')
     .done(function(response) {
         courses = response.data || response;
 				courses.forEach(displayCourseHtml);
