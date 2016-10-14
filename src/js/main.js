@@ -20,12 +20,10 @@ function getLinkedTitle(title, link) {
 	}
 	return courseTitle;
 };
-function getFullName(first, last) {
-	var fullName = last;
-	if (first) {
-		fullName =  '<p>' + first + " " + last + '</p>';
-	}
-	return fullName;
+function getFullName(teachersarray) {
+	var teacher = teachersarray.length ? teachersarray[0].fullName : '';
+
+	return teacher;
 }
 function getCredits(cred){
 	var credits = cred;
@@ -41,7 +39,7 @@ function displayCourseHtml(course) {
         '<tr>' +
             '<td>' + getStudyCode(course.studyCode) +'</td>' +
             '<td>' + getLinkedTitle(course.title, course.incomWorkspaceUrl) + '</td>' +
-            '<td>' + getFullName(course.firstName, course.lastName) + '</td>' +
+            '<td>' + getFullName(course.teachers) + '</td>' +
 						'<td>' + getCredits(course.credits) + '</td>' +
             '<td>' + getDescription(course.description) + '</td>' +
         '</tr>';
