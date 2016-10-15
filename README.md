@@ -3,6 +3,8 @@
 # Courses Viewer
 An html website using the [courses API](https://github.com/FH-Potsdam/coursesAPI) to display all the available courses given at the University Of Applied Science Potsdam. This project was used as a demonstration of an API usage with ajax loading.
 
+![A preview of the viewer](README.png)
+
 ## Getting started
 Clone the repository locally and move into it.
 ```bash
